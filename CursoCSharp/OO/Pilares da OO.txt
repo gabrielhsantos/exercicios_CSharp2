@@ -1,0 +1,54 @@
+Pilares do paradigma da Orientação a Objetos
+
+1 - Abstração:
+ . Modelar o mundo real dentro do software, com seu nível de complexidade
+   e trazer os conceitos mais relevantes para a função desejada;
+ . ID, definir algo único que representa um conceito do mundo real;
+ . Atibutos e comportamentos relevantes e que façam sentido no contexto do software.
+
+2 - Herança:
+ . Surge para que tenha um reuso de código;
+ . Atributos e Comportamentos são herdados (a menos que seja private);
+ . C# não permite heranças múltiplas.
+ . Ctrl + C / Ctrl + V Isso fere o conceito "DRY" (Don't Repeat Yourself), porém as vezes é necessário;
+ . Herança se for um "É um(a)": 
+	EX1: Cachorro é um animal;
+	EX2: Um jogo tem uma ou mais missões;
+ . Composição quando uma classe é uma composição de uma ou mais classes definidas que utilizam 
+   aspectos do mundo real, quando for um "Têm um(a)":
+	EX1: Classe Carro, utiliza uma referência a classe Motor e da classe Porta.
+	EX2: Uma classe Sala, utiliza as classes Mesa, TV, Sofa, Etc.
+ 
+3 - Encapsulamento:
+ . Quando os membros de uma classe são públicos, a chance de impactar outras classes dependentes é muito
+   grande, o ideal é a criação de membros privados alimentando um membro público, as informações estão
+   encapsuladas e não haverá mais dependências evitando um "Efeito Borboleta";
+ . Acessos: 
+	-> public = todos terão acesso ao membro;
+	-> internal = apenas quem está dentro do projeto terão visibilidade;
+	-> protected = protegido por herança dentro do projeto;
+	-> private = visivel apenas dentro da própria classe (mais restrito).
+
+4 - Polimorfismo:
+ . Poli (multiplas)/Morfismo (formas); 
+ . Estática -> Sobrecarga de métodos (métodos com o mesmo nome dentro de um mesmo contexto).
+	EX: classe Calculadora {
+		int Somar() {...}	    
+		double Somar() {...}
+	    };
+ . Dinâmica -> Criação de uma variável de um tipo específico, recebendo um tipo mais generico.
+	EX1: classe Civic : Carro {...} / classe Uno : Carro {...}
+ 	ao invéz de instanciar Civic c1 = new Civic(); / Uno c2 = new Uno();
+	pode usar o Carro c3 = new Civic(); Carro c4 = new Uno();
+	c3 = new Uno(); / c4 = new Civic();
+	A variável possui muitas formas, mas é necessário que haja herança.
+	Em um método, pode-se utilizar como parâmetro uma variável de um tipo específico,
+	Eliminando o polimorfismo estático:	
+	EX2: Ao invés de criar vários métodos desta forma:
+	  public void Vender(Civic x) {...}	
+	  public void Vender(Uno y) {...}
+	  public void Vender(Celta z) {...}
+	fica mais fácil criar um método único:
+	  public void Vender(Carro c) {...}
+	OBS: O parâmetro pode ser passado desde que seja herdado da classe Carro. 
+ . Caso uma nova classe seja criada depois, isso ajudará a não prejudicar em métodos já prontos. 
